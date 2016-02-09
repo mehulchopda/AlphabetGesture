@@ -14,23 +14,12 @@
 @protocol GalleryViewControllerProtocol
 -(void)setAsset:(PHAsset*)amount;
 -(void)setAssetCollection:(PHAssetCollection*)amount;
-
-
-
-
-
 @end
 @interface GalleryViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate,PHPhotoLibraryChangeObserver,GalleryViewControllerProtocol>
 {
-    
     DollarPGestureRecognizer *dollarPGestureRecognizer;
-    
-    
     IBOutlet UILabel *result;
     __weak IBOutlet GestureView *gestureView;
-    
-    
-    
     BOOL recognized;
 }
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
@@ -40,13 +29,10 @@
 @property (strong, nonatomic) IBOutlet UIButton *imageDelete;
 @property (strong, nonatomic) NSTimer *stopWatchTimer; // Store the timer that fires after a certain time
 @property (strong, nonatomic) NSDate *startDate; // Stores the date of the click on the start
-
 - (IBAction)imageDelete:(id)sender;
 - (IBAction)favouriteImage:(id)sender;
 - (IBAction)addAlbum:(id)sender;
 - (IBAction)allPhotos:(id)sender;
-
 - (IBAction)shareButton:(id)sender;
-
 @end
 

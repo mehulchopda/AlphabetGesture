@@ -175,10 +175,6 @@ int timen=0;
     
     
     // Added Swiipe to draw the Gesture
-    
-    
-    
-    
     UISwipeGestureRecognizer *swipeRight=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(didSwipe:)];
     [[self view] addGestureRecognizer:swipeRight];
     swipeRight.numberOfTouchesRequired=2;
@@ -187,12 +183,9 @@ int timen=0;
     [[self view] addGestureRecognizer:swipeLeft];
     swipeLeft.numberOfTouchesRequired=2;
     
-       UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapped:) ];
-        tapGesture.numberOfTapsRequired=1;
-        [[self view] addGestureRecognizer:tapGesture];
-    
-    
-    
+    UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapped:) ];
+    tapGesture.numberOfTapsRequired=1;
+    [[self view] addGestureRecognizer:tapGesture];
     
     ((AVPlayerLayer *)[[self previewView ] layer]).videoGravity = AVLayerVideoGravityResizeAspectFill;
     ((AVPlayerLayer *)[[self previewView ] layer]).bounds = ((AVPlayerLayer *)[[self previewView ] layer]).bounds;
@@ -263,8 +256,6 @@ int timen=0;
     modeCam=@"Camera";
     self.modeLabel.text=@"Camera";
     
-    
-    
 }
 -(void)didTapped:(UITapGestureRecognizer *)sender{
     
@@ -286,25 +277,8 @@ int timen=0;
 }
 
 -(void)timer{
-    //    if ([dataCam isEqualToString:@"Timer"]){
-    //        static int count = 5;
-    //        count--;
-    //
-    //        NSString *s = [[NSString alloc]
-    //                       initWithFormat:@"%d", count];
-    //
-    //        [self.myCounterLabel setHidden:NO];
-    //        self.myCounterLabel.text =   s;
-    //    }
     timen=6;
-    //    self.myCounterLabel.hidden=NO;
-    //    [self.myCounterLabel setFont:[UIFont systemFontOfSize:90]];
-    //    self.myCounterLabel.text = [NSString stringWithFormat:@"%d", timen];
-    
     Timer = [NSTimer scheduledTimerWithTimeInterval:1.0  target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
-    //[[NSRunLoop mainRunLoop] addTimer: Timer forMode: NSDefaultRunLoopMode];
-    
-    
     
 }
 - (void)updateCounter:(NSTimer *)theTimer {
@@ -319,12 +293,7 @@ int timen=0;
         NSLog(@"Photo was Taken");
         [self.myCounterLabel setFont:[UIFont systemFontOfSize:20]];
         self.myCounterLabel.hidden=YES;
-        //[_timeLabel performSelector:@selector(setText:) withObject:@"Photo taken!" afterDelay:1.0];
-        //Code for image shown at last second
     }
-    
-    
-    
     
 }
 
@@ -335,12 +304,6 @@ int timen=0;
     switch (direction) {
         case UISwipeGestureRecognizerDirectionRight:
         {NSLog(@"Swipe Right Detetcted");
-            
-            // [self performSegueWithIdentifier:@"toViewController" sender:sender];
-            // NSString *itemToPassBack = @"Grid";
-            // [self.delegate addItemViewController:@"Grid"];
-            // [self.navigationController popViewControllerAnimated:YES];
-            //self.previewView.alpha=1;
             break;
         }
         case UISwipeGestureRecognizerDirectionLeft:
@@ -355,15 +318,9 @@ int timen=0;
     }
 }
 -(void)handleUpdatedData:(NSNotification *)notification {
-    
-    
     [dollarPGestureRecognizer recognize];
     [gestureView clearAll];
     recognized = !recognized;
-    // [gestureView setUserInteractionEnabled:!recognized];
-    
-    
-    
     
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -386,7 +343,6 @@ int timen=0;
                                                               repeats:YES];
     }
     
-    
 }
 
 - (void)updateTimer
@@ -403,11 +359,10 @@ int timen=0;
     
     // Format the elapsed time and set it to the label
     NSString *timeString = [dateFormatter stringFromDate:timerDate];
-    // UILabel *result2 = (UILabel *)[view1 viewWithTag:13];
     result.text = timeString;
     
     
-    //stopWatch.text = timeString;
+    
 }
 -(void)stopTimer
 {
@@ -459,7 +414,7 @@ int timen=0;
         
         if([removeFlash isEqualToString:@"RemoveFlash"])
         {
-          
+            
             removeFlash=@"";
             dataCam=@"";
             [self stopTimer];
@@ -474,10 +429,7 @@ int timen=0;
             
         }
         
-        
     }
-    
-    
     //Take a Photo with a Timer
     
     if ([[result name] isEqualToString:@"T"] && [modeCam isEqualToString:@"Camera"]) {
@@ -495,20 +447,13 @@ int timen=0;
         [self timer];
         [self stopTimer];
         
-        
-        
     }
     
     // Show Dialog stating Video Mode in On
     
     if ([[result name] isEqualToString:@"V"])
     {
-        //self.previewView.transform = CGAffineTransformIdentity;
-        
-        // ([grid isEqualToString:@"Grid"]);
-        //{
         modeCam=@"Video";
-        
         self.modeLabel.text=@"Video";
         [self.myCounterLabel setHidden:NO];
         self.myCounterLabel.text=@"Tap to Start/Stop the video";
@@ -518,26 +463,14 @@ int timen=0;
             [self.myCounterLabel setHidden:YES];
         });
         [self stopTimer];
-
-        
-        
-        
-        
         
     }
     // Show Dialog stating Camera Mode in On
     
     if ([[result name] isEqualToString:@"C"])
     {
-        
         self.previewView.transform = CGAffineTransformIdentity;
-        
         modeCam=@"Camera";
-        
-        // self.previewView.transform = CGAffineTransformIdentity;
-        
-        // modeCam=@"Camera";
-        
         self.modeLabel.text=@"Camera";
         [self.myCounterLabel setHidden:NO];
         self.myCounterLabel.text=@"Tap to take a snap";
@@ -548,20 +481,13 @@ int timen=0;
         });
         [self stopTimer];
         
-        
-        
-        
     }
     if ([[result name] isEqualToString:@"S"])
     {
-        
-        
         CGAffineTransform translate = CGAffineTransformMakeTranslation(0.0, self.view.frame.size.height/2);
         self.previewView.transform = translate;
         dataCam=@"";
         [self stopTimer];
-        
-        
         
     }
     
@@ -583,8 +509,6 @@ int timen=0;
     }
     if ([[result name] isEqualToString:@"B"] )
     {
-        
-        
         [self.myCounterLabel setHidden:NO];
         self.myCounterLabel.text=@"BackCamera Enabled";
         int duration = 1; // duration in seconds
@@ -598,22 +522,12 @@ int timen=0;
         
     }
     
-    
 }
-
-
-
-
-
-
-
-
 - (void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden=YES;
     //    NSLog(@"Cuurent data=%@",dataCam);
     //    NSLog(@"Cuurent mode=%@",modeCam);
-    
     
     dispatch_async([self sessionQueue], ^{
         [self addObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:SessionRunningAndDeviceAuthorizedContext];
@@ -632,24 +546,12 @@ int timen=0;
         }]];
         [[self session] startRunning];
     });
-    
-    
-    
-    
-    //Open Settings
-    
-    
-    
-    
-    
-    
 }
 
 
 - (void) addSubviewWithZoomInAnimation:(UIView*)view duration:(float)secs option:(UIViewAnimationOptions)option {
     view.transform = CGAffineTransformIdentity;
     CGAffineTransform trans = CGAffineTransformScale(view.transform, 0.05, 0.05);
-    
     view.transform = trans; // do it instantly, no animation
     [self.previewView addSubview:view];
     // now return the view to normal dimension, animating this tranformation
@@ -664,8 +566,6 @@ int timen=0;
 
 -(void)DrawGridLines{
     
-    
-    // DBCameraGridView *cameraGridView=[[DBCameraGridView alloc]init];
     DBCameraGridView  *cameraGridView = [[DBCameraGridView alloc] initWithFrame:self.view.frame];
     // [cameraGridView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
     [cameraGridView setNumberOfColumns:2];
@@ -674,18 +574,6 @@ int timen=0;
     [cameraGridView setAlpha:1];
     //[self.previewView setMaskView:cameraGridView];
     [self.view addSubview:cameraGridView];
-    
-    
-    //        SUPGridWindow *grid=[SUPGridWindow sharedGridWindow];
-    //        [grid setGridColor:[UIColor blackColor]];
-    //        [grid setMajorGridSize:CGSizeMake(10, 10)];
-    //        [grid setMinorGridSize:CGSizeMake(40, 40)];
-    //
-    //    // add this new view to your main view
-    //        [self.previewView addSubview:grid];
-    
-    
-    
     
 }
 - (void)openSettings

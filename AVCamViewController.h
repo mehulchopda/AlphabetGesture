@@ -1,7 +1,7 @@
 /*
-     File: AVCamViewController.h
+ File: AVCamViewController.h
  Abstract: View controller for camera interface.
-  Version: 3.1
+ Version: 3.1
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -50,32 +50,22 @@
 #import "DollarPGestureRecognizer.h"
 #import "GestureView.h"
 
-
-/*@protocol AVCamViewControllerDelegate <NSObject>
-- (void)addItemViewController:(NSString *)item;
-@end*/
-
-
-
 @interface AVCamViewController : UIViewController{
-
+    
     __weak IBOutlet AVCamPreviewView *previewView;
-
+    
     IBOutlet UILabel *myCounterLabel;
- DollarPGestureRecognizer *dollarPGestureRecognizer;
-    
+    DollarPGestureRecognizer *dollarPGestureRecognizer;
     __weak IBOutlet GestureView *gestureView;
-
-      BOOL recognized;
+    BOOL recognized;
     IBOutlet UILabel *result;
-    
     IBOutlet UILabel *modeLabel;
 }
+
 @property (nonatomic, retain) UILabel *myCounterLabel;
 @property (nonatomic, retain) UILabel *modeLabel;
 @property (nonatomic, retain) NSString *dataCam;
- @property (nonatomic, retain) NSString *modeCam;
-//@property (nonatomic, weak) id <AVCamViewControllerDelegate> delegate;
+@property (nonatomic, retain) NSString *modeCam;
 @property(nonatomic,assign)id delegate;
 @property (strong, nonatomic) NSTimer *stopWatchTimer; // Store the timer that fires after a certain time
 @property (strong, nonatomic) NSDate *startDate; // Stores the date of the click on the start

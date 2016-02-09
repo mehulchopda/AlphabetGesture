@@ -8,15 +8,6 @@
 @property (nonatomic, strong) UIColor *color;
 
 @end
-
-
-//@implementation Stroke
-//
-//@synthesize points, color;
-//
-//@end
-
-
 NSTimer *myTimer;
 BOOL recognized;
 @implementation GestureView
@@ -95,10 +86,6 @@ BOOL recognized;
 - (void)endTouches:(NSSet *)touches {
     myTimer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(sendNotification) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer: myTimer forMode: NSDefaultRunLoopMode];
-    
-    
-    
-    //    [self setUserInteractionEnabled:!recognized];
     for (UITouch *touch in touches) {
         NSValue *key = [NSValue valueWithNonretainedObject:touch];
         Stroke *stroke = [currentTouches objectForKey:key];
@@ -119,13 +106,12 @@ BOOL recognized;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DataUpdated"
                                                         object:self];
     
-    
 }
 
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 5.0);
-
+    
     CGContextSetLineCap(context, kCGLineCapRound);
     
     for (int i = 0; i < [completeStrokes count]; i++) {

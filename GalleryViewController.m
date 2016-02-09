@@ -73,31 +73,19 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewDidLoad];
-    
-    
-    
-    
     [super viewWillAppear:animated];
-    
     [self.view layoutIfNeeded];
     [self updateImage];
-    
 }
 -(void)didSwipe:(UISwipeGestureRecognizer *)sender{
-    
-    
     UISwipeGestureRecognizerDirection direction=sender.direction;
-    
     switch (direction) {
         case UISwipeGestureRecognizerDirectionRight:
         {NSLog(@"Swipe Right Detetcted");
-            
-            //UIView *view= [[[[UIApplication sharedApplication] keyWindow] subviews] lastObject];
-            //UIImageView *myImageView = (UIImageView *)[view viewWithTag:15];
             self.imageView.alpha=1;
-            
             [self.navigationController popViewControllerAnimated:YES];
-            break;}
+            break;
+        }
         case UISwipeGestureRecognizerDirectionLeft:
         {
             NSLog(@"Swipe Left Detetcted");
@@ -110,30 +98,20 @@
         default:
             break;
             
-            
     }
 }
 
 -(void)handleUpdatedData:(NSNotification *)notification {
     
-    
     [dollarPGestureRecognizer recognize];
     [gestureView clearAll];
     recognized = !recognized;
-    // [gestureView setUserInteractionEnabled:!recognized];
-    
-    
-    
     
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
     AAPLAssetGridViewController *assetGridViewController = segue.destinationViewController;
     assetGridViewController.delegate = self;
-    // Fetch all assets, sorted by date created.
-    
-    
     
 }
 
@@ -157,7 +135,6 @@
                                                               repeats:YES];
     }
     
-    
 }
 
 - (void)updateTimer
@@ -176,9 +153,6 @@
     NSString *timeString = [dateFormatter stringFromDate:timerDate];
     // UILabel *result2 = (UILabel *)[view1 viewWithTag:13];
     result.text = timeString;
-    
-    
-    //stopWatch.text = timeString;
 }
 -(void)stopTimer
 {
@@ -206,41 +180,35 @@
         
         [self favouriteImage:self];
         [self stopTimer];
-
+        
         [[[UIAlertView alloc] initWithTitle:@"Message!"
                                     message:@"Image was added to favourite sucesfully"
                                    delegate:self
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil] show];
         
-        //        [self grabImageDataFromAsset:self.asset];
-        
         
     }
     if ([[result name] isEqualToString:@"S"]) {
         
-        
         [self shareButton:self];
         [self stopTimer];
-
-    }
-   
-    if ([[result name] isEqualToString:@"A"]) {
         
+    }
+    
+    if ([[result name] isEqualToString:@"A"]) {
         
         [self addAlbum:self];
         [self stopTimer];
-
+        
     }
     if ([[result name] isEqualToString:@"E"]) {
         
-        
         [self applyImageFilter:self ];
         [self stopTimer];
-
+        
     }
     if ([[result name] isEqualToString:@"I"]) {
-        
         PHImageRequestOptions *reqoptions = [[PHImageRequestOptions alloc] init];
         reqoptions.networkAccessAllowed = YES;
         reqoptions.synchronous = YES;
@@ -268,7 +236,7 @@
              
              [self.navigationController pushViewController:tableViewController animated:YES];
              [self stopTimer];
-
+             
              
          }];
         
@@ -335,7 +303,6 @@
     }
 }
 
-
 #pragma mark - PHPhotoLibraryChangeObserver
 
 - (void)photoLibraryDidChange:(PHChange *)changeInstance
@@ -350,12 +317,6 @@
             self.asset = [changeDetails objectAfterChanges];
             [self updateImage];
             if ([changeDetails assetContentChanged]) {
-                
-                
-                //                if (self.playerLayer) {
-                //                    [self.playerLayer removeFromSuperlayer];
-                //                    self.playerLayer = nil;
-                //                }
             }
         }
         
@@ -480,31 +441,6 @@
     }];
     [self presentViewController:alert animated:YES completion:nil];
     
-    
-    
-    
-    
-    //
-    //    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"New Album", @"") message:nil preferredStyle:UIAlertControllerStyleAlert];
-    //    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"") style:UIAlertActionStyleCancel handler:NULL]];
-    //    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-    //        textField.placeholder = NSLocalizedString(@"Album Name", @"");
-    //    }];
-    //    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Create", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-    //        UITextField *textField = alertController.textFields.firstObject;
-    //        NSString *title = textField.text;
-    //
-    ////         Create new album.
-    //        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-    //            [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:title];
-    //        } completionHandler:^(BOOL success, NSError *error) {
-    //            if (!success) {
-    //                NSLog(@"Error creating album: %@", error);
-    //            }
-    //        }];
-    //    }]];
-    //
-    //    [self presentViewController:alertController animated:YES completion:NULL];
 }
 
 - (IBAction)shareButton:(id)sender {
@@ -532,8 +468,6 @@
                                                      destructiveButtonTitle:nil
                                                           otherButtonTitles:@"Grayscale", @"Sepia", @"Sketch", @"Pixellate", @"Color Invert", @"Toon", @"Pinch Distort", nil];
     
-    //    [filterActionSheet showFromBarButtonItem:sender animated:YES];
-    //    nil];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         // In this case the device is an iPad.
         // [filterActionSheet showFromRect:[(UIButton *)sender frame] inView:self.view animated:YES];
@@ -583,38 +517,5 @@
     }
     
 }
-//- (void)imagePickerController
-// {
-//     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-//
-//     // Enumerate just the photos and videos group by using ALAssetsGroupSavedPhotos.
-//     [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
-//                            usingBlock:^(ALAssetsGroup *group, BOOL *stop)
-//      {
-//
-//          // Within the group enumeration block, filter to enumerate just photos.
-//          [group setAssetsFilter:[ALAssetsFilter allPhotos]];
-//
-//          // For this example, we're only interested in the first item.
-//          [group enumerateAssetsAtIndexes:[NSIndexSet indexSetWithIndex:0]
-//                                  options:0
-//                               usingBlock:^(ALAsset *alAsset, NSUInteger index, BOOL *innerStop)
-//           {
-//
-//               // The end of the enumeration is signaled by asset == nil.
-//               if (alAsset) {
-//                   ALAssetRepresentation *representation = [alAsset defaultRepresentation];
-//                   NSDictionary *imageMetadata = [representation metadata];
-//                   // Do something interesting with the metadata.
-//                   NSLog(@"Metadata from Trail=%@",imageMetadata);
-//               }
-//           }];
-//      }
-//                          failureBlock: ^(NSError *error)
-//      {
-//          // Typically you should handle an error more gracefully than this.
-//          NSLog(@"No groups");
-//      }];
-//
-//     }
+
 @end

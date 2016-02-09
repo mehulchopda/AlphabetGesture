@@ -84,8 +84,6 @@ DollarPoint * MakePoint(float x, float y, int id) {
                                             MakePoint(497 ,467,2),
                                             MakePoint(492 ,467,2) ]);
     
-    
-    
     pointClouds[2] = MakePointCloud(@"D", @[
                                             MakePoint(102 ,163,1),
                                             MakePoint(102 ,168,1),
